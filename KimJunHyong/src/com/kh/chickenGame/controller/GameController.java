@@ -19,11 +19,11 @@ public class GameController {
 		do {
 			chicken.lossHp(player.getAttackPower()+(int)(Math.random()*3));
 			if(chicken.getHp()>0) {
-			System.out.println(chicken.getName()+ "ÀÇ Ã¼·Â: " + chicken.getHp());
+			System.out.println(chicken.getName()+ "ì˜ hp: " + chicken.getHp());
 			}
 			player.lossHp(chicken.getAttackPower()+(int)(Math.random()*2));
 			if(player.getPlayerHp()>0) {
-			System.out.println(player.getPlayerName()+ "ÀÇ Ã¼·Â: " + player.getPlayerHp());
+			System.out.println(player.getPlayerName()+ "ì˜ hp: " + player.getPlayerHp());
 			}
 			checkAlive(chicken);
 			checkAlive(player);
