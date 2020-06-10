@@ -10,31 +10,39 @@ import com.kh.chickenGame.model.vo.Player;
 import com.kh.chickenGame.model.vo.ChiefChicken;
 
 public class GameMenu {
+	Scanner sc = new Scanner(System.in);
+	
 	private Player player;
 	private GameController gameController;
 	static int btn = 0;
+	static int miniGameCoin = 1;
 	public GameMenu(String playerName) {
 		this.player = new Player(playerName);
 		this.gameController = new GameController(player);
 	}
 	
 	public void mainMenu() {
-		Scanner sc = new Scanner(System.in);
+		
 		do {
-			System.out.println(player.getPlayerName() + "ÀÇ °ÔÀÓ ¸Ş´º");
+			System.out.println(player.getPlayerName() + "ì˜ ê²Œì„ ë©”ë‰´");
 			System.out.println("===================");
-			System.out.println("1. ÇöÀç »óÅÂ º¸±â");
-			System.out.println("2. °áÅõ!");
-			System.out.println("9. ³ª°¡±â");
+			System.out.println("1. í˜„ì¬ ìƒíƒœ ë³´ê¸°");
+			System.out.println("2. ê²°íˆ¬!");
+			System.out.println("3. ì²´ë ¥ì„ ì±„ì›Œë´ìš©");
+			System.out.println("9. ë‚˜ê°€ê¸°");
 			
-			System.out.print("¸Ş´º¸¦ ¼±ÅÃÇÏ¼¼¿ä : ");
+			System.out.print("ë©”ë‰´ë¥¼ ì„ íƒí•˜ì„¸ìš” : ");
 			int no = sc.nextInt();
 			sc.nextLine();
-			
+			if (miniGameCoin == 0 && no == 3) {
+				System.out.println("ë¯¸ë‹ˆê²Œì„ ì½”ì¸ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
+				continue;
+			}
 			switch(no) {
 				case 1 : gameController.displayPlayerInfo(); break;
 				case 2 : choiceChickenMenu(); break;
-				case 9 : System.out.println("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù."); return;
+				case 3 : miniGameCoin -=1; miniGameHpPlus(); break;
+				case 9 : System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤."); return;
 			}			
 		} while(btn == 0);
 		
@@ -44,37 +52,37 @@ public class GameMenu {
 		Scanner sc = new Scanner(System.in);
 		do {
 			System.out.println("====================");
-			System.out.println("°áÅõÇÒ ´ßÀ» °í¸£¼¼¿ä");
-			System.out.println("1. °ÌÀïÀÌ ´ß");
-			System.out.println("2. ¾ç¾ÆÄ¡ ´ß");
-			System.out.println("3. ´ëÀå ´ß");
-			System.out.println("9. ¸ŞÀÎ¸Ş´º·Î");
-			System.out.print("¸Ş´º ¹øÈ£ : ");
+			System.out.println("ê²°íˆ¬í•  ë‹­ì„ ê³ ë¥´ì„¸ìš”");
+			System.out.println("1. ê²ìŸì´ ë‹­");
+			System.out.println("2. ì–‘ì•„ì¹˜ ë‹­");
+			System.out.println("3. ëŒ€ì¥ ë‹­");
+			System.out.println("9. ë©”ì¸ë©”ë‰´ë¡œ");
+			System.out.print("ë©”ë‰´ ë²ˆí˜¸ : ");
 			int no = sc.nextInt();
 			sc.nextLine();
-			Chicken chicken1 = new CowardChicken(100, 100,5, "°ÌÀïÀÌ ´ß");
-			Chicken chicken2 = new JerkChicken(500, 300,15, "¾ç¾ÆÄ¡ ´ß");
-			Chicken chicken3 = new ChiefChicken(1000,700,25, "´ëÀå ´ß");
+			Chicken chicken1 = new CowardChicken(100, 100,5, "ê²ìŸì´ ë‹­");
+			Chicken chicken2 = new JerkChicken(500, 300,15, "ì–‘ì•„ì¹˜ ë‹­");
+			Chicken chicken3 = new ChiefChicken(1000,700,25, "ëŒ€ì¥ ë‹­");
 			
 			switch(no) {
 				case 1 : if(chicken2 != null) {
 					if (chicken2.getHp()>0) {gameController.playerattack(chicken1);
-					}}break;
+					}} miniGameCoin+=1; break;
 				case 2 : if(chicken2 != null) {
 					if (chicken2.getHp()>0) {
 					gameController.playerattack(chicken2);
-					}}break;
+					}} miniGameCoin+=1; break;
 				case 3 : if(chicken3 != null) {
 					if (chicken3.getHp()>0) {
 					gameController.playerattack(chicken3);
-					}}break;
+					}} miniGameCoin+=1; break;
 				case 9 : return;
-				default : System.out.println("Àß¸ø ÀÔ·Â ÇÏ¼Ì½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä");
+				default : System.out.println("ì˜ëª» ì…ë ¥ í•˜ì…¨ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”");
 			}
 			
 			
 			} while(player.isAlive());
-		System.out.println("´Ù½Ã ½ÃÀÛÇÏ°Ú½À´Ï±î?(Y/N)");
+		System.out.println("ë‹¤ì‹œ ì‹œì‘í•˜ê² ìŠµë‹ˆê¹Œ?(Y/N)");
 		String ans = sc.nextLine();
 		char checkans = ans.charAt(0);
 		if (checkans == 'y' || checkans == 'Y') {
@@ -84,10 +92,35 @@ public class GameMenu {
 			player.setAttackPower(10);
 			player.setRequiredExp(player.getLevel()*100);
 			player.setAliveStatus(true);
+			miniGameCoin = 1;
 		}
 		if (checkans == 'n'|| checkans == 'N') {
-			System.out.println("°ÔÀÓÀ» Á¾·áÇÕ´Ï´Ù.");
+			System.out.println("ê²Œì„ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 			btn+=1;
 		}
 	}
+	
+	public void miniGameHpPlus() {
+		
+			System.out.println("====================");
+			System.out.println("1,2,3 ì¤‘ í•˜ë‚˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”!");
+			System.out.println("20~150 ê¹Œì§€ ëœë¤í•˜ê²Œ ì²´ë ¥ì„ ì±„ì›Œë“œë ¤ìš”!");
+			System.out.println("ì²´ë ¥ì„ ì±„ìš°ì§€ ì•Šê³  ë©”ë‰´ë¡œ ëŒì•„ê°€ì‹œë ¤ë©´ ");
+			System.out.println("9ë²ˆì„ ëˆŒëŸ¬ì£¼ì„¸ìš”!");
+			System.out.print("ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+			int no = sc.nextInt();
+			sc.nextLine();
+			 
+			switch(no) {
+			case 1 : player.setPlayerHp(player.getPlayerHp()+((int)Math.random()*131)+20);
+					 break;
+			case 2 : player.setPlayerHp(player.getPlayerHp()+((int)Math.random()*131)+20);
+					 break;
+			case 3 : player.setPlayerHp(player.getPlayerHp()+((int)Math.random()*131)+20);
+					 break;
+			case 9 : return;
+			}
+	
+	}
 }
+
