@@ -8,6 +8,6 @@ public class JerkChicken extends Chicken {
 
 	@Override
 	public void cry() {
-		System.out.println("´ëÀå´ÔÀÌ º¹¼ö..ÇØÁÙ²¨´ß!!!!");
+		System.out.println("ê¼¬ê¼¬..ëŒ€ì¥ë‹˜ì´ ë³µìˆ˜í•´ì£¼ê¼¬!!!!!");
 	}
 }
