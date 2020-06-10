@@ -8,6 +8,6 @@ public class CowardChicken extends Chicken {
 
 	@Override
 	public void cry() {
-		System.out.println("²¿...³­³Ê¹«¾àÇÏ²¿..");
+		System.out.println("ê¼¬..ë‚œë„ˆë¬´ì•½í•˜ê¼¬....");
 	}
 }
