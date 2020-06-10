@@ -8,6 +8,6 @@ public class ChiefChicken extends Chicken {
 
 	@Override
 	public void cry() {
-		System.out.println("³»°¡ Áö´Ù´ÏÀÌÀÌÀÌ!!!!!! ²¿²¿.....");
+		System.out.println("ë‚´ê°€ ì£½ë‹¤ë‹ˆ...ê¼¬ê¼¬!!ë¶„í•˜ë‹¤!!.....");
 	}
 }
